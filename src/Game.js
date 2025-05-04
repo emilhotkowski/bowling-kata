@@ -1,9 +1,11 @@
 export default class Game {
-    roll(knocked) { 
+    rolls = []
 
+    roll(knocked) { 
+        this.rolls.push(knocked);
     }
 
     score() {
-        return 1;
+        return this.rolls.reduce((a, b) => a + b);
     }
 }

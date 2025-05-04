@@ -18,3 +18,10 @@ test('Score 1 point for 1 knocked down pin', () => {
   game.roll(1);
   expect(game.score()).toBe(1);
 });
+
+test('Score 3 point for 1 and 2 knocked down pins by the same player', () => {
+    const game = new Game();
+    game.roll(1);
+    game.roll(2);
+    expect(game.score()).toBe(3);
+  });
