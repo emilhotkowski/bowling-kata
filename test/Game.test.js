@@ -12,6 +12,7 @@ Behaviours:
         - Spare in 10th frame gives an extra roll
     - Strike (all 10 pins in 1 roll), 10 + bonus from next 2 rolls 
         - Strike in 10th frame is 2 extra rolls
+    - perfect game gives 300, times 2 (both players) points
  */
 test('Score 1 point for 1 knocked down pin', () => {
   const game = new Game();
@@ -19,9 +20,18 @@ test('Score 1 point for 1 knocked down pin', () => {
   expect(game.score()).toBe(1);
 });
 
-test('Score 3 point for 1 and 2 knocked down pins by the same player', () => {
+test('Score 3 points for 1 and 2 knocked down pins by the same player', () => {
     const game = new Game();
     game.roll(1);
     game.roll(2);
     expect(game.score()).toBe(3);
-  });
+});
+
+test('Score frames for both players', () => {
+    const game = new Game();
+    game.roll(1);
+    game.roll(2);
+    game.roll(3);
+    game.roll(4);
+    expect(game.score()).toBe(10);
+})
