@@ -5,7 +5,7 @@ import Game from '../src/Game';
 /*
 Behaviours:
 - Full game has 10 frames
-- Each frame is at most 2 rolls for 2 players
+- Each frame is at most 2 rolls
 - We correctly scrore a frame
     - No spare / no strike, total is only what we knocked down
     - Spare (all 10 pins in 2 rolls), 10 + bonus from next roll from next frame
@@ -14,24 +14,10 @@ Behaviours:
         - Strike in 10th frame is 2 extra rolls
     - perfect game gives 300, times 2 (both players) points
  */
-test('Score 1 point for 1 knocked down pin', () => {
+test('Score 0 for all gutter balls', () => {
   const game = new Game();
-  game.roll(1);
-  expect(game.score()).toBe(1);
+  for(var i = 0; i < 20; i++) {
+    game.roll(0)
+  }
+  expect(game.score()).toBe(0);
 });
-
-test('Score 3 points for 1 and 2 knocked down pins by the same player', () => {
-    const game = new Game();
-    game.roll(1);
-    game.roll(2);
-    expect(game.score()).toBe(3);
-});
-
-test('Score frames for both players', () => {
-    const game = new Game();
-    game.roll(1);
-    game.roll(2);
-    game.roll(3);
-    game.roll(4);
-    expect(game.score()).toBe(10);
-})
